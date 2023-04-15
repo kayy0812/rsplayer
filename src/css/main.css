@@ -1,0 +1,79 @@
+:root {
+    --black-color: #000;
+    --white-color: #fff;
+}
+
+.rsjs {
+    user-select: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-color);
+}
+
+.rsjs__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background-color: #0000001f;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+.rsjs:hover 
+.rsjs__overlay {
+    visibility: visible;
+    opacity: 1;
+}
+
+.rsjs__overlay-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rsjs__overlay-play-btn
+.rsjs__overlay-play-btn-svg:last-child  {
+    visibility: hidden;
+}
+
+.rsjs__overlay-play-btn
+.rsjs__overlay-play-btn-svg:first-child  {
+    transform: translateX(50%);
+    opacity: 1;
+}
+
+.rsjs__overlay-play-btn--active
+.rsjs__overlay-play-btn-svg:first-child  {
+    visibility: hidden;
+    transform: translateX(-80%);
+    opacity: 0;
+}
+
+.rsjs__overlay-play-btn--active
+.rsjs__overlay-play-btn-svg:last-child {
+    visibility: visible;
+    transform: translateX(-50%);
+    opacity: 1;
+}
+
+.rsjs__overlay-play-btn-svg:last-child {
+    transform: translateX(80%);
+    opacity: 0;
+}
+
+.rsjs__overlay-play-btn-svg {
+    width: 64px;
+    height: 64px;
+    color: var(--white-color);
+    transition: all .2s ease;
+}
+
+.rsjs__video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
