@@ -8,18 +8,27 @@ export default class RS {
     init() {
         for (var item of this.getList()) {
             var player = new Player(item)
-            player.create()
+            var ui = player.getUI()
+            ui.renderTheme()
 
-            player.dom.rsplayerOverlay.addEventListener('click', () => {
-                if (player.dom.video.paused) {
+            if (player.isPaused()) {
+                ui.setPlayState(false)
+            }
+
+            player.getDOM().rsplayerOverlay.addEventListener('click', () => {
+                if (player.isPaused()) {
                     player.play()
                 } else {
                     player.pause()
                 }
             })
 
-            player.dom.video.addEventListener('ended', () => {
-                player.dom.rsplayerOverlay.remove('rsjs__overlay-play-btn--active')
+            player.getVideo().addEventListener('ended', () => {
+                player.getDOM().rsplayerOverlay.remove('rsjs__overlay-play-btn--active')
+            })
+
+            player.getVideo().addEventListener('timeupdate', (e) => {
+                ui.updateProgress(e)
             })
         }
     }

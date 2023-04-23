@@ -1,6 +1,11 @@
 :root {
     --black-color: #000;
     --white-color: #fff;
+
+    /* Progress */
+    --controls-progress-bg-color: #ffffffd7;
+    --controls-bg-color: #0000003e;
+    --controls-progress-thumb-bg-color: #171717;
 }
 
 .rsjs {
@@ -76,4 +81,46 @@
     width: 100%;
     height: 100%;
     z-index: 1;
+}
+
+/* Controls - Progress */
+.rsjs__controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--controls-bg-color);
+    transition: all .1s ease;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.rsjs:hover 
+.rsjs__controls {
+    visibility: visible;
+    opacity: 1;
+}
+
+.rsjs__controls-progress {
+    position: relative;
+    cursor: pointer;
+    width: 50%;
+    height: 8px;
+    background: var(--controls-progress-bg-color);
+    border-radius: 1px;
+}
+
+.rsjs__controls-progress-thumb {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 1px;
+    left: 0;
+    width: 0;
+    background-color: var(--controls-progress-thumb-bg-color);
 }
